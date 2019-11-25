@@ -10,17 +10,17 @@ export class SidemenuPage implements OnInit {
   public pages = [
     {
       title: 'Make Order',
-      url: '/menu/venues',
+      url: '/sidemenu/venues',
       icon: 'pizza'
     },
     {
       title: 'Your Orders',
-      url: '/menu/venues',
+      url: '/sidemenu/venues',
       icon: 'list'
     },
     {
       title: 'Profile',
-      url: '/menu/profile',
+      url: '/sidemenu/profile',
       icon: 'person'
     }
   ]
