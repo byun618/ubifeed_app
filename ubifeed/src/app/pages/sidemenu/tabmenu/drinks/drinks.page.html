@@ -1,9 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>drinks</ion-title>
+    <ion-title>Drinks</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list class="list">
+    <div class="for-div" *ngFor="let meal of meals">
+        <ion-item class="list-item" *ngIf="meal.category == 2">
+            <div class="list-left">
+              <ion-label class="list-title">{{ meal.name }}</ion-label>
+            </div>
+            <div class="list-right">
+              <ion-label class="list-price">{{ meal.price | currency:'EUR' }}</ion-label>
+            </div>
+            <div class="list-icon">
+              <ion-icon (click)="addToBasket(meal.mealId)" name="add-circle-outline"></ion-icon>
+            </div>
+          </ion-item>
+    </div>
+  </ion-list>
 </ion-content>

@@ -1,0 +1,33 @@
+.title {
+    width: 100%;
+    text-align: center;
+}
+
+ion-grid {
+
+    ion-row {
+        padding-top: .5em;
+        padding-bottom: .5em;
+        width: 100%;
+
+        ion-col {
+
+            ion-icon {
+                color: red;
+                font-size: 1.2em;
+            }
+        }
+    }
+}
+
+.divider {
+    background-color: #000000;
+    position: absolute;
+    width: 96%;
+    left: 2%;
+    height: 2px;
+}
+
+.btn-order {
+    width: 90%;
+}

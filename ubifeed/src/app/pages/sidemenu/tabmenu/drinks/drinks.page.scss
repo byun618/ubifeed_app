@@ -1,0 +1,28 @@
+.list {
+    width: 100%;
+
+    .for-div {
+        width: 100%;
+
+        .list-item {
+            width: 100%;
+
+            .list-left {
+                width: 80%;
+            }
+
+            .list-right {
+                width: 20%;
+            }
+
+            .list-icon {
+                width: 10%;
+
+                ion-icon {
+                    font-size: 1.8em;
+                }
+            }
+        }
+        
+    }
+}

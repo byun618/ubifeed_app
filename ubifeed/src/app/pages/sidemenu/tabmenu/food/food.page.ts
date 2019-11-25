@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpParams, HttpHandler, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { StorageService } from '../../../../services/storage.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class FoodPage implements OnInit {
   url = 'http://localhost:8080/ubifeed/?action=get-all-meals&restaurantId=';
   restaurantId: any;
   meals: any;
+  basket: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private storageService: StorageService,
@@ -33,6 +34,35 @@ export class FoodPage implements OnInit {
         console.log(data);
         this.meals = data;
       });
+    
+    this.storageService.getKeyValue('foodbasket')
+      .then((data) => {
+        if (data != null) {
+          this.basket = data;
+        }
+      });
+  }
+
+  ionViewDidLeave() {
+
+  }
+
+  addToBasket(mealId: any) {
+    if (this.basket == null) {
+      this.basket = [];
+    }
+    let mealItem = null;
+    this.meals.forEach(meal => {
+      if (meal.mealId == mealId) {
+        mealItem = meal;
+      }
+    });
+    this.basket.push(mealItem);
+    console.log(this.basket);
+    this.storageService.setObject('foodbasket', this.basket)
+    .then((data) => {
+      console.log(data);
+    });
   }
 
 }

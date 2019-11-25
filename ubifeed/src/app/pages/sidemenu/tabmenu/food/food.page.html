@@ -14,6 +14,9 @@
                 <div class="list-right">
                   <ion-label class="list-price">{{ meal.price | currency:'EUR' }}</ion-label>
                 </div>
+                <div class="list-icon">
+                  <ion-icon (click)="addToBasket(meal.mealId)" name="add-circle-outline"></ion-icon>
+                </div>
               </ion-item>
         </div>
       </ion-list>
