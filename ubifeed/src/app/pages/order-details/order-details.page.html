@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label>Seat category</ion-label>
-      <ion-select value="seat-category" okText="Okay" cancelText="Cancel">
-        <ion-select-option *ngFor="let item of dbResult" [value]="item.seatCategoryId">{{ item.seatCategoryName }}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+  <h3>Please select information</h3>
+  <ion-item>
+    <ion-label>Seat category</ion-label>
+    <ion-select [(ngModel)]="selectedSectorId" okText="Okay" cancelText="Cancel">
+      <ion-select-option *ngFor="let item of dbResult" [value]="item.seatCategoryId">{{ item.seatCategoryName }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button type="button" (click)="makeOrder()">Order</ion-button>
 </ion-content>

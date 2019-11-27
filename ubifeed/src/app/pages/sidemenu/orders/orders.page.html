@@ -1,8 +1,11 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>orders</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar hideBackButton="true">
+      <ion-buttons end>
+        <ion-menu-button menu="first" auto-hide="false"></ion-menu-button>
+        <ion-title>Your Orders</ion-title>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
   <ion-card *ngFor="let order of orders">

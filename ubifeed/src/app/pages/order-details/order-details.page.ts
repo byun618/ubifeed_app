@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { HttpClient, HttpParams, HttpHandler, HttpHeaders } from '@angular/common/http';
-
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-order-details',
@@ -14,9 +14,11 @@ export class OrderDetailsPage implements OnInit {
   dbResult: any;
   venueId: any;
   stations: Array<any>;
+  selectedSectorId: any;
 
   constructor(private storageService: StorageService,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private toastService: ToastService) { }
 
   ngOnInit() {
     this.storageService.getKeyValue('venueId')
@@ -31,5 +33,12 @@ export class OrderDetailsPage implements OnInit {
             this.dbResult = data;
           });
       });
-  }
+    }
+
+    makeOrder() {
+      console.log(this.selectedSectorId);
+      if (this.selectedSectorId == undefined) {
+        this.toastService.showToast('Please select a sector!');
+      }
+    }
 }
