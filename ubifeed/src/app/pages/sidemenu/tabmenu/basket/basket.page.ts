@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../../../services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basket',
@@ -12,7 +13,8 @@ export class BasketPage implements OnInit {
   drinksbasket: any;
   totalAmount = 0.0;
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService,
+              private router: Router) { }
 
   ngOnInit() {
     this.storageService.getObject('foodbasket')
@@ -39,6 +41,11 @@ export class BasketPage implements OnInit {
       });
   }
 
+  ngOnDestroy() {
+    this.storageService.removeObject('foodbasket');
+    this.storageService.removeObject('drinksbasket');
+  }
+
   removeFromBasket(index: any, identifier: any) {
     if (identifier == 1) {
       this.foodbasket.splice(index, 1);
@@ -52,12 +59,19 @@ export class BasketPage implements OnInit {
 
   updateTotalAmount() {
     this.totalAmount = 0.0;
-    this.foodbasket.forEach(item => {
-      this.totalAmount += item.price;
-    });
-    this.drinksbasket.forEach(item => {
-      this.totalAmount += item.price;
-    });
+    if (this.foodbasket != null) {
+      this.foodbasket.forEach(item => {
+        this.totalAmount += item.price;
+      });
+    } 
+    if (this.drinksbasket != null) {
+      this.drinksbasket.forEach(item => {
+        this.totalAmount += item.price;
+      });
+    }
+  }
+  orderItems() {
+    this.router.navigateByUrl('/order-details');
   }
 
 }

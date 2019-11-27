@@ -27,6 +27,11 @@ export class RestaurantsPage implements OnInit {
         console.log(data);
         this.restaurants = data;
       });
+
+    this.storageService.setKeyValue('venueId', this.venueId)
+      .then((data) => {
+        console.log('venueId set');
+     });
   }
 
 }

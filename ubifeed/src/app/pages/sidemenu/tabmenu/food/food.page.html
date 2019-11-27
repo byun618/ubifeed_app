@@ -7,7 +7,7 @@
 <ion-content>
     <ion-list class="list">
         <div class="for-div" *ngFor="let meal of meals">
-            <ion-item class="list-item" *ngIf="meal.category == 1">
+            <ion-item class="list-item" *ngIf="meal.categoryId == 1">
                 <div class="list-left">
                   <ion-label class="list-title">{{ meal.name }}</ion-label>
                 </div>

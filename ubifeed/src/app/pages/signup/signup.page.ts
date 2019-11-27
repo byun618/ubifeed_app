@@ -48,7 +48,7 @@ export class SignupPage implements OnInit {
         if (data != null) {
           this.storageService.setObject('user', data)
             .then(_ => {
-              this.router.navigateByUrl('/menu/venues');
+              this.router.navigateByUrl('/sidemenu/venues');
             }).catch((ex) => {
               console.log(ex);
             });

@@ -10,7 +10,8 @@ const routes: Routes = [
   //   path: 'sidemenu',
   //   loadChildren: () => import('./pages/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
   // },
-  { path: 'sidemenu', loadChildren: './pages/sidemenu/sidemenu.module#SidemenuPageModule' }
+  { path: 'sidemenu', loadChildren: './pages/sidemenu/sidemenu.module#SidemenuPageModule' },
+  { path: 'order-details', loadChildren: './pages/order-details/order-details.module#OrderDetailsPageModule' }
 ];
 
 @NgModule({
