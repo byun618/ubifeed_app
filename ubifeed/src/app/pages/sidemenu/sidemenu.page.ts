@@ -15,7 +15,7 @@ export class SidemenuPage implements OnInit {
     },
     {
       title: 'Your Orders',
-      url: '/sidemenu/venues',
+      url: '/sidemenu/orders',
       icon: 'list'
     },
     {

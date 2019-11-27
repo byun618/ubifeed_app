@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let order of orders">
+      <ion-card-header>
+        <ion-card-subtitle>Order number: {{ order.orderId }}</ion-card-subtitle>
+        <ion-card-title>Order status: {{ order.orderStatus }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+</ion-content>
