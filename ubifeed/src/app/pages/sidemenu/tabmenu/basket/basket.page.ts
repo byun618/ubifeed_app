@@ -21,7 +21,7 @@ export class BasketPage implements OnInit {
       .then((data) => {
         this.foodbasket = data;
         if (data != null) {
-          data.forEach(item => {
+          data.forEach((item) => {
             this.totalAmount += item.price;
           });
         }
