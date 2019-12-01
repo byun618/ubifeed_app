@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../../../services/storage.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -10,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DrinksPage implements OnInit {
 
-  url = 'http://localhost:8080/ubifeed/?action=get-all-meals&restaurantId=';
+  // url = 'http://localhost:8080/ubifeed/?action=get-all-meals&restaurantId=';
+  url = 'http://localhost:8080/ubifeed/';
   restaurantId: any;
   meals: any;
   basket: any;
@@ -24,12 +25,20 @@ export class DrinksPage implements OnInit {
         console.log('Result getKeyValue', data);
         this.restaurantId = data;
 
-        let urlWithParams = this.url + this.restaurantId;
-        this.http.get(urlWithParams)
-        .subscribe((data) => {
-          console.log(data);
-          this.meals = data;
-        });
+        const params = new HttpParams()
+          .set('action', 'get-meals')
+          .set('restaurantId', this.restaurantId);
+
+        const headers = {
+          headers: new HttpHeaders()
+                    .set('Content-Type', 'application/x-www-form-urlencoded')
+        };
+
+        this.http.post(this.url, params, headers)
+          .subscribe((data) => {
+            console.log(data);
+            this.meals = data;
+          });
       });
     this.storageService.getKeyValue('drinksbasket')
       .then((data) => {

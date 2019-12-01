@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { StorageService } from '../../../../services/storage.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { StorageService } from '../../../../services/storage.service';
 })
 export class FoodPage implements OnInit {
 
-  url = 'http://localhost:8080/ubifeed/?action=get-all-meals&restaurantId=';
+  url = 'http://localhost:8080/ubifeed/';
   restaurantId: any;
   meals: any;
   basket: any;
@@ -27,9 +27,16 @@ export class FoodPage implements OnInit {
         console.log('Restaurant id set successfully');
       });
 
-    let urlWithParams = this.url + this.restaurantId;
+    const params = new HttpParams()
+      .set('action', 'get-meals')
+      .set('restaurantId', this.restaurantId);
 
-    this.http.get(urlWithParams)
+    const headers = {
+      headers: new HttpHeaders()
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+
+    this.http.post(this.url, params, headers)
       .subscribe((data) => {
         console.log(data);
         this.meals = data;

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class OrderDetailsPage implements OnInit {
 
-  url = 'http://localhost:8080/ubifeed/?action=get-pickup-details&venueId=';
+  url = 'http://localhost:8080/ubifeed/';
   dbResult: any;
   venueId: any;
   stations: Array<any>;
@@ -28,21 +28,69 @@ export class OrderDetailsPage implements OnInit {
         console.log(data);
         this.venueId = data;
 
-        let urlWithParams = this.url + this.venueId;
-        this.http.get(urlWithParams)
+        const params = new HttpParams()
+          .set('action', 'get-pickup-details')
+          .set('venueId', data);
+        
+        const headers = {
+          headers: new HttpHeaders()
+                    .set('Content-Type', 'application/x-www-form-urlencoded')
+        };
+
+        this.http.post(this.url, params, headers)
           .subscribe((data) => {
             console.log(data);
-            this.dbResult = data;
+            if (data != null) {
+              console.log(data);
+              this.dbResult = data;
+            }
           });
       });
     }
 
     makeOrder() {
-      console.log(this.selectedSectorId);
-      if (this.selectedSectorId == undefined) {
-        this.toastService.showToast('Please select a sector!');
-      } else {
-        this.router.navigateByUrl('/sidemenu/orders');
-      }
+      // console.log(this.selectedSectorId);
+      // if (this.selectedSectorId == undefined) {
+      //   this.toastService.showToast('Please select a sector!');
+      // } else {
+      //   this.router.navigateByUrl('/sidemenu/orders');
+      // }
+
+      this.storageService.setKeyValue('seatCatId', this.selectedSectorId)
+        .then((data) => {
+          console.log('seatCatId set');
+        });
+
+      var foodbasket = null;
+      this.storageService.getObject('foodbasket')
+        .then((data) => {
+          if (data != null) {
+            foodbasket = data;
+          }
+        });
+
+      var drinksbasket = null;
+      this.storageService.getObject('drinksbasket')
+        .then((data) => {
+          if (data != null) {
+            drinksbasket = data;
+          }
+        });
+
+      var userId = null;
+      this.storageService.getObject('user')
+        .then((data) => {
+          if (data != null) {
+            userId = data.userId;
+          }
+        });
+
+      var restaurantId = null;
+      this.storageService.getKeyValue('restaurantId')
+        .then((data) => {
+          if (data != null) {
+            restaurantId = data;
+          }
+        });
     }
 }

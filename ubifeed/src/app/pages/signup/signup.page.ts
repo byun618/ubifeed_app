@@ -45,6 +45,7 @@ export class SignupPage implements OnInit {
 
     this.http.post(this.url, params, headers)
       .subscribe((data) => {
+        console.log(data);
         if (data != null) {
           this.storageService.setObject('user', data)
             .then(_ => {

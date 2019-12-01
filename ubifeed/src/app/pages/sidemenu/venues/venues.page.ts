@@ -11,7 +11,7 @@ import { HttpClient, HttpParams, HttpHandler, HttpHeaders } from '@angular/commo
 })
 export class VenuesPage implements OnInit {
 
-  url = 'http://localhost:8080/ubifeed/?action=get-all-venues';
+  url = 'http://localhost:8080/ubifeed/';
   venues: any;
 
   constructor(private storageService: StorageService,
@@ -19,7 +19,16 @@ export class VenuesPage implements OnInit {
               private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get(this.url)
+
+    const params = new HttpParams()
+      .set('action', 'get-all-venues');
+
+    const headers = {
+      headers: new HttpHeaders()
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+
+    this.http.post(this.url, params, headers)
       .subscribe((data) => {
         console.log(data);
         this.venues = data;

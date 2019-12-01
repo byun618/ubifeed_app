@@ -11,7 +11,7 @@ import { HttpClient, HttpParams, HttpHandler, HttpHeaders } from '@angular/commo
 })
 export class RestaurantsPage implements OnInit {
 
-  url = 'http://localhost:8080/ubifeed/?action=get-all-restaurants&venueId=';
+  url = 'http://localhost:8080/ubifeed/';
   venueId: any;
   restaurants: any;
 
@@ -21,8 +21,17 @@ export class RestaurantsPage implements OnInit {
 
   ngOnInit() {
     this.venueId = this.activatedRoute.snapshot.paramMap.get('id');
-    let urlWithParams = this.url + this.venueId;
-    this.http.get(urlWithParams)
+
+    const params = new HttpParams()
+      .set('action', 'get-all-restaurants')
+      .set('venueId', this.venueId);
+
+    const headers = {
+      headers: new HttpHeaders()
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+
+    this.http.post(this.url, params, headers)
       .subscribe((data) => {
         console.log(data);
         this.restaurants = data;
@@ -31,7 +40,7 @@ export class RestaurantsPage implements OnInit {
     this.storageService.setKeyValue('venueId', this.venueId)
       .then((data) => {
         console.log('venueId set');
-     });
+      });
   }
 
 }
