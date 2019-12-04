@@ -16,6 +16,10 @@ export class OrderDetailsPage implements OnInit {
   venueId: any;
   stations: Array<any>;
   selectedSectorId: any;
+  foodbasket: any;
+  drinksbasket: any;
+  userId: any;
+  restaurantId: any;
 
   constructor(private storageService: StorageService,
               private http: HttpClient,
@@ -46,9 +50,51 @@ export class OrderDetailsPage implements OnInit {
             }
           });
       });
+
+    this.storageService.getObject('foodbasket')
+      .then((data) => {
+        console.log(data);
+        this.foodbasket = data;
+      });
+    this.storageService.getObject('drinksbasket')
+      .then((data) => {
+        console.log(data);
+        this.drinksbasket = data;
+      });
+    this.storageService.getObject('user')
+      .then((data) => {
+        console.log(data.userId);
+        this.userId = data.userId;
+      });
+    this.storageService.getKeyValue('restaurantId')
+      .then((data) => {
+        console.log(data);
+        this.restaurantId = data;
+      });
     }
 
     makeOrder() {
+      const params = new HttpParams()
+        .set('action', 'add-order')
+        .set('foodbasket', JSON.stringify(this.foodbasket))
+        .set('drinksbasket', JSON.stringify(this.drinksbasket))
+        .set('restaurantId', this.restaurantId)
+        .set('userId', this.userId)
+        .set('seatCatId', this.selectedSectorId);
+
+
+      const headers = {
+        headers: new HttpHeaders()
+                  .set('Content-Type', 'application/x-www-form-urlencoded')
+      };
+
+      this.http.post(this.url, params, headers)
+        .subscribe((data) => {
+          console.log(data);
+        });
+    }
+
+    makeOrder2() {
       // console.log(this.selectedSectorId);
       // if (this.selectedSectorId == undefined) {
       //   this.toastService.showToast('Please select a sector!');
