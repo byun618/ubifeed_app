@@ -14,7 +14,8 @@
         <ion-card-title>Order status: {{ order.orderStatus }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        Pickup Station {{ order.pickupStation.pickupId }}: {{ order.pickupStation.locationDescription }}
+        Pickup Station: {{ order.pickupStation.name }} - 
+        {{ order.pickupStation.locationDescription }}
       </ion-card-content>
     </ion-card>
 </ion-content>

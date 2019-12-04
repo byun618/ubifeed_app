@@ -43,7 +43,7 @@
       </ion-row>
       <ion-row class="row">
         <ion-col class="col">
-          <ion-button class="btn save-button" type="submit" expand="block">Save</ion-button>
+          <ion-button (click)="saveUser()" class="btn save-button" type="submit" expand="block">Save</ion-button>
         </ion-col>
         <ion-col class="col">
           <ion-button fill="solid" class="btn logout-button" type="button" (click)="logout()" expand="block">Logout</ion-button>

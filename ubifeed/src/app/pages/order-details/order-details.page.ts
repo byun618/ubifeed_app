@@ -90,53 +90,9 @@ export class OrderDetailsPage implements OnInit {
 
       this.http.post(this.url, params, headers)
         .subscribe((data) => {
-          console.log(data);
-        });
-    }
-
-    makeOrder2() {
-      // console.log(this.selectedSectorId);
-      // if (this.selectedSectorId == undefined) {
-      //   this.toastService.showToast('Please select a sector!');
-      // } else {
-      //   this.router.navigateByUrl('/sidemenu/orders');
-      // }
-
-      this.storageService.setKeyValue('seatCatId', this.selectedSectorId)
-        .then((data) => {
-          console.log('seatCatId set');
-        });
-
-      var foodbasket = null;
-      this.storageService.getObject('foodbasket')
-        .then((data) => {
-          if (data != null) {
-            foodbasket = data;
-          }
-        });
-
-      var drinksbasket = null;
-      this.storageService.getObject('drinksbasket')
-        .then((data) => {
-          if (data != null) {
-            drinksbasket = data;
-          }
-        });
-
-      var userId = null;
-      this.storageService.getObject('user')
-        .then((data) => {
-          if (data != null) {
-            userId = data.userId;
-          }
-        });
-
-      var restaurantId = null;
-      this.storageService.getKeyValue('restaurantId')
-        .then((data) => {
-          if (data != null) {
-            restaurantId = data;
-          }
+          this.storageService.removeObject('foodbasket');
+          this.storageService.removeObject('drinksbasket');
+          this.router.navigateByUrl('/sidemenu/orders');
         });
     }
 }

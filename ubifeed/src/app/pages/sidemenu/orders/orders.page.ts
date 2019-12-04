@@ -24,12 +24,14 @@ export class OrdersPage implements OnInit {
       .then((data) => {
         console.log(data);
         this.seatCatId = data;
+        console.log(data);
       });
 
     this.storageService.getObject('user')
       .then((data) => {
         console.log(data);
         this.user = data;
+        console.log(this.user.userId);
 
         const params = new HttpParams()
           .set('action', 'get-all-orders')

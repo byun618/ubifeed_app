@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../../services/storage.service';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class ProfilePage implements OnInit {
 
   user: any;
-
+  url = 'http://localhost:8080/ubifeed/';
   action: any;
   firstname: string;
   lastname: string;
@@ -20,7 +21,8 @@ export class ProfilePage implements OnInit {
   passwordRepeat: string;
 
   constructor(private storageService: StorageService,
-              private router: Router) { }
+              private router: Router,
+              private http: HttpClient) { }
 
   ngOnInit() {
     this.storageService.getObject('user')
@@ -38,5 +40,27 @@ export class ProfilePage implements OnInit {
   logout() {
     this.storageService.removeObject('user');
     this.router.navigateByUrl('/login');
+  }
+
+  saveUser() {
+    const params = new HttpParams()
+          .set('action', 'change-user')
+          .set('userId', this.user.userId)
+          .set('firstName', this.firstname)
+          .set('lastName', this.lastname)
+          .set('phone', this.phone)
+          .set('email', this.email)
+          .set('password', this.password);
+
+
+        const headers = {
+          headers: new HttpHeaders()
+                    .set('Content-Type', 'application/x-www-form-urlencoded')
+        };
+
+        this.http.post(this.url, params, headers)
+          .subscribe((data) => {
+            console.log(data);
+          });
   }
 }

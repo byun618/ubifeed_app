@@ -6,11 +6,6 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        <h2 class="title">Items to Order</h2>
-      </ion-col>
-    </ion-row>
     <ion-row *ngFor="let item of foodbasket; let i = index">
       <ion-col size="7">
         {{ item.name }}
@@ -55,3 +50,4 @@
   </ion-grid>
   
 </ion-content>
+

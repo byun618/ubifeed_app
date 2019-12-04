@@ -5,6 +5,11 @@
 
 ion-grid {
 
+    margin-top: 3em;
+    width: 90%;
+    position: absolute;
+    left: 5%;
+
     ion-row {
         padding-top: .5em;
         padding-bottom: .5em;
@@ -13,7 +18,7 @@ ion-grid {
         ion-col {
 
             ion-icon {
-                color: rgb(160, 160, 160);
+                color: rgb(199, 0, 0);
                 font-size: 1.2em;
             }
         }
@@ -21,11 +26,12 @@ ion-grid {
 }
 
 .divider {
-    background-color: #000000;
+    width: 90%;
     position: absolute;
-    width: 96%;
-    left: 2%;
+    left: 5%;
+    background-color: darkgray;
     height: 2px;
+    margin-top: 0.5em;
 }
 
 .btn-order {
