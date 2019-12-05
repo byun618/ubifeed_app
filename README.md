@@ -54,3 +54,5 @@ After compiling, the App will start in your default browser.
 In order to get the data within the app, you need to have the Java Backend and the MySQL Database setup.
 
 Repository for the Backend: https://github.com/MarcoWilhelm/Ubifeed.git
+
+If you are getting an Error in the JavaScript Console about CORS Issues, you might need a browser plugin to allow CORS for testing within the browser.
