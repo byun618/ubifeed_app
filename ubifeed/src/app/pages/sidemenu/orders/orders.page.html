@@ -8,7 +8,22 @@
   </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let order of orders">
+  <h4>Ordered</h4>
+  <div class="cat-wrapper" *ngFor="let order of orders">
+    <ion-card *ngIf="order.orderStatus == 'ORDERED'">
+      <ion-card-header>
+        <ion-card-subtitle>Order number: {{ order.orderId }}</ion-card-subtitle>
+        <ion-card-title>Order status: {{ order.orderStatus }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Pickup Station: {{ order.pickupStation.name }} - 
+        {{ order.pickupStation.locationDescription }}
+    </ion-card-content>
+    </ion-card>
+  </div>
+  <h4>In preperation</h4>
+  <div class="cat-wrapper" *ngFor="let order of orders">
+    <ion-card *ngIf="order.orderStatus == 'In Preperation'">
       <ion-card-header>
         <ion-card-subtitle>Order number: {{ order.orderId }}</ion-card-subtitle>
         <ion-card-title>Order status: {{ order.orderStatus }}</ion-card-title>
@@ -18,4 +33,31 @@
         {{ order.pickupStation.locationDescription }}
       </ion-card-content>
     </ion-card>
+  </div>
+  <h4>Ready at restaurant</h4>
+  <div class="cat-wrapper" *ngFor="let order of orders">
+    <ion-card *ngIf="order.orderStatus == 'Ready'">
+        <ion-card-header>
+          <ion-card-subtitle>Order number: {{ order.orderId }}</ion-card-subtitle>
+          <ion-card-title>Order status: {{ order.orderStatus }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Pickup Station: {{ order.pickupStation.name }} - 
+          {{ order.pickupStation.locationDescription }}
+        </ion-card-content>
+    </ion-card>
+  </div>
+  <h4>In Station</h4>
+  <div class="cat-wrapper" *ngFor="let order of orders">
+    <ion-card *ngIf="order.orderStatus == 'IN_STATION'">
+        <ion-card-header>
+          <ion-card-subtitle>Order number: {{ order.orderId }}</ion-card-subtitle>
+          <ion-card-title>Order status: Ready for pickup</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Pickup Station: {{ order.pickupStation.name }} - 
+          {{ order.pickupStation.locationDescription }}
+        </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
