@@ -8,7 +8,7 @@
 [4. 개발 파트](#개발-파트)  
 [5. Getting Started](#Getting-Started)
 
-## 프로젝트 개요
+## 프로젝트 개요 (2019/9 - 2019/12)
 ##### fork from : https://github.com/MarcoWilhelm/ubifeed_app
 * 개요  
 2019/2 아일랜드 더블린 공과 대학([TUDublin](https://www.tudublin.ie/)), Global Classroom 수업. 여러 나라에서 교환학생으로 온 학생들이 참여해 한 한기동안 작품 개발. 우리팀은 총 4인으로 구성. 각각 __한국__, __벨기에__, __이탈리아__, __루마니아__ 의 국적을 가지고 있었다.
